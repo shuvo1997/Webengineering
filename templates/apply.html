@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}Fill in the form{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="{% url 'home' %}">My School</a></li>
+  <li class="breadcrumb-item"><a href="#">Application</a></li>
+  <li class="breadcrumb-item active">Fill up the form</li>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype="multipart/form-data" novalidate>
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+{% endblock %}
