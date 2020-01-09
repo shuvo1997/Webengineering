@@ -4,14 +4,44 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">My School</a></li>
-  <li class="breadcrumb-item"><a href="#">Application</a></li>
+  <li class="breadcrumb-item"><a href="#">Admission</a></li>
   <li class="breadcrumb-item active">Fill up the form</li>
 {% endblock %}
 
+{%block javascript%}
+  <script>
+    $("#id_contact_no").change(function(){
+      var contact_no = $(this).val();
+      console.log(contact_no);
+      $.ajax({
+        url: '/ajax/validate_contact_no/',
+        data: {
+          'contact_no': contact_no
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data.is_taken) {
+            alert("A user with this Contact number is already exists.");
+          }
+        }
+      });
+    });
+
+  </script>
+{%endblock%}
+
 {% block content %}
-  <form method="post" enctype="multipart/form-data" novalidate>
-    {% csrf_token %}
-    {{form.as_p}}
-    <button type="submit" class="btn btn-success">Submit</button>
+  <form id="first_form" method="post" enctype="multipart/form-data" novalidate>
+    <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-success" id="btnvalidate">Submit</button>
+        
+      </form>
+    </div>
+  </div>
+
   </form>
 {% endblock %}
