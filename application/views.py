@@ -25,10 +25,11 @@ def apply(request):
 
     return render(request, 'apply.html', {'form':form})
 
+@login_required
 def show_applicants(request):
-    applicant1 = Applicant_new.objects.all()
+    applicator = Applicant_new.objects.filter(belongs_to__username=request.user)
 
-    context={'applicant1':applicant1}
+    context={'applicator':applicator}
 
     return render(request,'show_applicants.html',context)
 
