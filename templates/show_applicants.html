@@ -4,16 +4,31 @@
 
 {% block breadcrumb %}
   <li class="breadcrumb-item"><a href="{% url 'home' %}">My School</a></li>
-  <li class="breadcrumb-item"><a href="#">Application</a></li>
-  <li class="breadcrumb-item active">Fill up the form</li>
+  <li class="breadcrumb-item"><a href="#">Applicants</a></li>
 {% endblock %}
 
 {% block content %}
-	{%for ap in applicator%}
-		<p>{{ap.name}}</p>
-		<p>{{ap.birthdate}}</p>
-		<p>{{ap.religion}}</p>
-		<p>{{ap.id}}</p>
-		<p><img src="{{ap.image.url}}" width="200" height="200"></p>
-	{%endfor%}
+	<table class="table">
+		<thead class="thead-inverse">
+			<tr>
+				<th>Reg Id</th>
+				<th>Name</th>
+				<th>Birth Date</th>
+				<th>Contact No</th>
+				<th>Picture</th>
+			</tr>
+		</thead>
+		<tbody>	
+			{%for ap in applicator%}
+				<tr>
+					<td>{{ap.id}}</td>
+					<td>{{ap.name}}</td>
+					<td>{{ap.birthdate}}</td>
+					<td>{{ap.contact_no}}</td>
+					<td><a href="{{ap.image.url}}">Image</a></td>
+				</tr>
+			{%endfor%}
+		</tbody>
+	</table>
+	
 {% endblock %}

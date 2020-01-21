@@ -55,6 +55,7 @@ urlpatterns = [
     path('show_applicants/',views.show_applicants,name='show_applicants'),
     path('ajax/validate_contact_no/',views.validate_contact_no,name='validate_contact_no'),
     path('contact/',views.contact,name='contact'),
+    path('apply/done/',views.apply_done,name='apply_done'),
 
 ]
 

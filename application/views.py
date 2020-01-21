@@ -18,12 +18,16 @@ def apply(request):
             applicant = form.save(commit = False)
             applicant.belongs_to = request.user
             form.save()
-            return redirect('home')
+            return redirect('apply_done')
         
     else:
         form = ApplicationForm()
 
     return render(request, 'apply.html', {'form':form})
+
+@login_required
+def apply_done(request):
+    return render(request,'application_done.html')
 
 @login_required
 def show_applicants(request):

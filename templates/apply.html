@@ -3,9 +3,7 @@
 {% block title %}Fill in the form{% endblock %}
 
 {% block breadcrumb %}
-  <li class="breadcrumb-item"><a href="{% url 'home' %}">My School</a></li>
-  <li class="breadcrumb-item"><a href="#">Admission</a></li>
-  <li class="breadcrumb-item active">Fill up the form</li>
+  <li class="breadcrumb-item"><a href="#">Apply</a></li>
 {% endblock %}
 
 {%block javascript%}
@@ -37,11 +35,9 @@
       <form method="post" novalidate>
         {% csrf_token %}
         {% include 'includes/form.html' %}
-        <button type="submit" class="btn btn-success" id="btnvalidate">Submit</button>
-        
+        <button type="submit" class="btn btn-success" id="btnvalidate">Submit</button>  
       </form>
     </div>
   </div>
-
   </form>
 {% endblock %}
