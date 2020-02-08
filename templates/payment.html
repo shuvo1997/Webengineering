@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+
+{% block title %}Fill in the form{% endblock %}
+
+{% block breadcrumb %}
+  <li class="breadcrumb-item"><a href="#">Payment</a></li>
+{% endblock %}
+
+{% block content %}
+  <form id="payment_form" method="post" novalidate>
+    <div class="row">
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {% include 'includes/form.html' %}
+        <button type="submit" class="btn btn-success" id="btnvalidate">Submit</button>  
+      </form>
+    </div>
+  </div>
+  </form>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from .forms import ApplicationForm
 from .models import Applicant_new
+from result.models import payment
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -32,8 +33,9 @@ def apply_done(request):
 @login_required
 def show_applicants(request):
     applicator = Applicant_new.objects.filter(belongs_to__username=request.user)
+    payments = payment.objects.all()
 
-    context={'applicator':applicator}
+    context={'applicator':applicator,'payments':payments}
 
     return render(request,'show_applicants.html',context)
 
